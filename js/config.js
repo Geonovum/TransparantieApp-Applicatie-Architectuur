@@ -3,13 +3,13 @@ let respecConfig = {
   useLabel: true,
 
   // TODO: title is verplicht! Neem hieronder de titel van het document op
-  title: "Geonovum template voor ReSpec",
+  title: "TransparantieApp Bijlage Applicatie Architectuur",
   //-- specStatus is verplicht! (activeer 1 van de volgende)
-  // specStatus: "wv",                 // Werkversie
+  specStatus: "wv",                 // Werkversie
   //specStatus: "cv",               // Consultatieversie
   //specStatus: "vv",               // Versie ter vaststelling
   //specStatus: "def",              // Vastgestelde versie
-  specStatus: "basis",            // Basis Document
+  //specStatus: "basis",            // Basis Document
 
   //-- specType is verplicht bij alle andere dan BASIS
   //specType: "NO",                 // Norm
@@ -25,7 +25,7 @@ let respecConfig = {
   //-- pubDomain is verplicht! (komt in de URL)
   //-- zie: https://geonovum.github.io/handleiding-tooling/ReSpec/#pubdomain
   //-- TODO: vul pubDomain in
-  pubDomain: "3dbv",
+  pubDomain: "ldv",
 
   //-- license: voor de geldende gebruiksvoorwaarden. Default is cc-by.
   //license: "cc-by-nd",            // bronvermelding, geen afgeleide werken (default)
@@ -33,18 +33,19 @@ let respecConfig = {
   license: "cc-by",                 // Attribution, met bronvermelding
 
   //-- TODO shortName is verplicht! (komt in de URL: kies logische afkorting)
-  //-- Regel: shortName mag geen hoofdletters bevatten.
-  shortName: "nl-respec-template",
+  shortName: "transparantieapp-arch",
   
   //edDraftURI = De URI van de draft version. Deze wordt automatisch afgeleid van de github URI; maar kan hier overschreven worden. 
 	//edDraftURI: ["https://geonovum.github.io", "/", "shortName"],
 
   //-- publishDate is verplicht. Als je werkversie gekozen hebt  dan pakt Respec
   //-- de pushdate maar de publishDate is nog steeds verplicht.
-  publishDate: "2026-02-09",
+  publishDate: "2025-11-17",
   
   //-- publishVersion is verplicht. Hij mag wel leeg zijn [], maar niet de lege string zijn "".
   publishVersion: [],
+
+  preProcess: [window.respecMermaid.createFigures],
  
   //-- Voor dit blok geldt: alleen als er eerdere versies zijn en altijd beide aan/uit! 
   //previousPublishDate: "2014-05-01",
@@ -58,7 +59,7 @@ let respecConfig = {
   editors:
     [
       {
-        name: "voornaam achternaam",
+        name: "Frank Terpstra",
         company: "Geonovum",
         companyURL: "https://www.geonovum.nl",
       }
@@ -69,7 +70,22 @@ let respecConfig = {
   authors:
     [
       {
-        name: "voornaam achternaam",
+        name: "Frank Terpstra",
+        company: "Geonovum",
+        companyURL: "https://www.geonovum.nl",
+      },
+	  {
+        name: "Carmen Burghardt",
+        company: "Geonovum",
+        companyURL: "https://www.geonovum.nl",
+      },
+	  {
+        name: "Henk Erik van der Hoek",
+        company: "Geonovum",
+        companyURL: "https://www.geonovum.nl",
+      },
+	  {
+        name: "Klaas van Veelen",
         company: "Geonovum",
         companyURL: "https://www.geonovum.nl",
       }
@@ -77,7 +93,7 @@ let respecConfig = {
 
   // TODO: Vul de github URL in.
   //neem hier de URL van de github repository op waar het respec document in staat
-  github: "https://github.com/Geonovum/NL-ReSpec-template",
+  github: "https://github.com/Geonovum/TransparantieApp-Applicatie-Architectuur",
 
   // Create PDF and link to file in header (optional):
   // TODO: Change the filename as preferred.
@@ -88,22 +104,77 @@ let respecConfig = {
   //    },
   //],
 
-  //
   // Lokale lijst voor bibliografie
   // - Kijk eerst naar de beschikbare www.specref.org .
-  // - Kijk daarna in de organisatieconfig op: https://tools.geostandaarden.nl/specref/
+  // - Kijk daarna in de organisatieconfig.
   // - Voeg dan pas hieronder toe.
-  // - Zie handleiding: https://geonovum.github.io/handleiding-tooling/ReSpec/ReSpec-onderdelen/#bibliografie
-  //
   localBiblio: 
   {
-    MIM12: {
-      id: "MIM12",
-      title: "MIM - Metamodel Informatie Modellering (Versie 1.2)",
-      href: "https://docs.geostandaarden.nl/mim/def-st-mim-20240613/",
+    FSAUTH: {
+      id: "FSAUTH",
+      title: "Forum Standaardisatie Authenticatie Standaarden",
+      href: "https://www.forumstandaardisatie.nl/open-standaarden/authenticatie-standaarden",
       status: "Definitief",
       publisher: "Geonovum",
-      date: "2024-06-13"
+      date: "2020-03-23"
+    },
+    LDV: {
+      id: "LDV",
+      title: "Standaard Logboek dataverwerkingen",
+      href: "https://logius-standaarden.github.io/logboek-dataverwerkingen/#detailniveaus",
+      status: "Werkversie",
+      publisher: "Logius",
+      date: "2026-01-06"
+    },
+    DIGIDAPP2APP: {
+      id: "DIGIDAPP2APP",
+      title: "Functionele beschrijving DigiD app",
+      href: "https://www.logius.nl/onze-dienstverlening/toegang/digid/documentatie/functionele-beschrijving-digid-app",
+      status: "Definitief",
+      publisher: "Logius",
+      date: "2023-11-18"
+    },
+	  GRIP : {
+      id: "GRIP",
+      title: "Grip op eigen gegevens ",
+      status: "Definitief",
+      publisher: "Danny Lämmerhirt & Julia Jansen (Waag)",
+      date: "2024-01-05"
+    },
+	  KWALITATIEF: {
+      id: "KWALITATIEF",
+      title: "Kwalitatief burgeronderzoek: gegevens bij besluiten ",
+      status: "Definitief",
+      publisher: "Bureau Mare",
+      date: "2025-25-07"
+    },
+	  DIGNITY: {
+      id: "DIGNITY",
+      title: "D1.2 Benchmark of factors affecting use of digital products and services across Europe",
+      status: "Definitief",
+      publisher: "DIGNITY",
+      date: "2022-27-06"
+    },
+    BIBLIOTHEEKNETWERK: {
+      id: "bibliotheeknetwerk",
+      title: "Digitale vaardigheden en digitaal burgerschap in de bibliotheek",
+      href: "https://www.bibliotheeknetwerk.nl/artikel/digitale-vaardigheden-en-digitaal-burgerschap-in-de-bibliotheek",
+      status: "Definitief",
+      publisher: "Bibliotheeknetwerk",
+      date: "2025-10-30"
+    },
+    OAuth: {
+      id: "OAuth",
+      title: "NL GOV Assurance profile for OAuth 2.0",
+      href: 'https://gitdocumentatie.logius.nl/publicatie/api/oauth/',
+      status: "Definitief",
+      publisher: "Logius",
+      date: "2024-12-03"
+    },
+    NLDesign: {
+      id: "NLDesign",
+      title: "NL Design System",
+      href: "https://nldesignsystem.nl/",
     }
   }
 };
