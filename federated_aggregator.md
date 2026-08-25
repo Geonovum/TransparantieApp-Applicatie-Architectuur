@@ -3,14 +3,11 @@
 ## Kernidee
 Dit voorstel is in essentie een variant op Architectuuroplossing 1: server-side aggregatie. Echter, om het nadeel van een backend component dat tot een single point of failure leidt te voorkomen, wordt de backend component bij alle deelnemende organisaties gedraaid. De client verbindt met een willekeurige instance, of altijd met de instance van bijvoorbeeld de gemeente waar iemand is ingeschreven/gevestigd (nader uit te werken).
 
-_Tijdelijke opmerking_ HE: willekeurig zou mijn voorkeur hebben. Voorkomt ook complexiteit met b.v. burgers welke op dit moment niet in Nederland wonen en dus bij geen enkele gemeente zijn ingeschreven. Ook technisch beter, want waarom zou de applicatie down zijn voor iemand uit, zeg Amersfoort, als enkele de federated aggregator van de gemeente Amersfoort er uit licht? 
-
-
 ## Oplossing in meer detail
 
 In de eerste fase wordt een set van traceId's opgebouwd per root-organisatie. In de tweede fase wordt de volledige trace opgehaald bij de root organisatie. De root organisatie is verantwoordelijk voor het ophalen van de trace informatie bij andere deelmenende organisaties. 
 
-<figure id="Sequence diagram voor federated aggregator">
+<figure id="sequence-diagram-voor-federated-aggregator">
 <pre class="diagram mermaid">
 sequenceDiagram
 
@@ -90,7 +87,7 @@ __Logboek van RDW__
 
 Het onderzoek waar Trace `T1` betrekking op heeft is nog lopende. De betrokkene met `BSN1` mag de trace (nog) niet zien. Deze beslissing wordt genomen door het logboek applicatie van de FIOD.
 
-<figure id="Sequence diagram voor federated aggregator">
+<figure id="sequence-diagram-voor-federated-aggregator-vertrouwelijk">
 <pre class="diagram mermaid">
 sequenceDiagram
 
@@ -126,7 +123,7 @@ end
 <figcaption>Sequence diagram: voorbeeld</figcaption>
 </figure>
 
-_Note_ HE: Als de trace vertrouwelijk is, dan hoeft de FIOD de RDW uberhaupt niet meer aan te roepen om daar de trace spans op te halen.
+_Note_ Als de trace vertrouwelijk is, dan hoeft de FIOD de RDW uberhaupt niet meer aan te roepen om daar de trace spans op te halen.
 
 ## Oplossing per bedenking
 
