@@ -226,7 +226,7 @@ In de kern is deze architetuuroplossing een uitbreiding op oplossing 2 (JWT) waa
 #### Sequence diagram
 
 <figure>
-  <a href="media/psuedo.png">
+  <a href="media/pseudo.png">
     <img
       src="media/pseudo.png"
       alt="Sequence diagram van de pseudoniemen architectuur"
