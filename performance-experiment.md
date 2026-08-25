@@ -63,7 +63,7 @@ de browser een volledig nieuwe verbinding opzetten (DNS-lookup, TCP-handshake, T
 omdat het een niet-simpel cross-origin verzoek betreft — een **CORS-preflight** uitvoeren. Niets
 hiervan kan tussen organisaties worden hergebruikt.
 
-<figure id="Sequence diagram: VO-Rijk-aanpak in de browser">
+<figure id="sequence-diagram-VO-Rijk-aanpak-in-de-browser">
 <pre class="diagram mermaid">
 sequenceDiagram
 
