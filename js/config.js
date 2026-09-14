@@ -5,10 +5,10 @@ let respecConfig = {
   // TODO: title is verplicht! Neem hieronder de titel van het document op
   title: "TransparantieApp Bijlage Applicatie Architectuur",
   //-- specStatus is verplicht! (activeer 1 van de volgende)
-  specStatus: "wv",                 // Werkversie
+  //specStatus: "wv",               // Werkversie
   //specStatus: "cv",               // Consultatieversie
   //specStatus: "vv",               // Versie ter vaststelling
-  //specStatus: "def",              // Vastgestelde versie
+  specStatus: "def",                // Vastgestelde versie
   //specStatus: "basis",            // Basis Document
 
   //-- specType is verplicht bij alle andere dan BASIS
@@ -40,7 +40,7 @@ let respecConfig = {
 
   //-- publishDate is verplicht. Als je werkversie gekozen hebt  dan pakt Respec
   //-- de pushdate maar de publishDate is nog steeds verplicht.
-  publishDate: "2025-11-17",
+  publishDate: "2026-09-14",
   
   //-- publishVersion is verplicht. Hij mag wel leeg zijn [], maar niet de lege string zijn "".
   publishVersion: [],
