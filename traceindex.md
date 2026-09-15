@@ -118,7 +118,7 @@ Aangezien niet herleidbare pseudoniemen een sterkere vorm van privacy met zich m
 
 ### Aanmelden van een `traceId`
 
-<figure id="Sequence diagram voor het aanmelden van een trace">
+<figure id="sequence-diagram-voor-het-aanmelden-van-een-trace">
 <pre class="diagram mermaid">
 sequenceDiagram;
 
@@ -142,7 +142,7 @@ Bij stap 4 wordt de referentie code ingewisseld voor een pseudoniem. In het requ
 
 ### Opvragen van `traceId`'s
 
-<figure id="Sequence diagram voor het opvragen van traceId's">
+<figure id="sequence-diagram-voor-het-opvragen-van-trace-ids">
 <pre class="diagram mermaid">
 sequenceDiagram
 
