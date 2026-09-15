@@ -2295,9 +2295,7 @@ is. Bij een overheidsbrede uitrol potentieel duizenden. Dit experiment onderzoek
 die last technisch aankan.</p>
 </section><section id="opzet-van-het-experiment"><div class="header-wrapper"><h3 id="x6-3-opzet-van-het-experiment"><bdi class="secno">6.3 </bdi>Opzet van het experiment</h3><a class="self-link" href="#opzet-van-het-experiment" aria-label="Permalink for Section 6.3"></a></div>
 <p>De volledige code van de testopstelling staat in
-<a href="https://github.com/henkerik/performance-test">github.com/henkerik/performance-test</a>. De opstelling
-bestaat uit twee delen.</p>
-<p>TODO: Verplaatsen naar Github account Geonovum? </p>
+<a href="https://github.com/Geonovum/TransparantieApp-Applicatie-Architectuur/performance-test">github.com/Geonovum/TransparantieApp-Applicatie-Architectuur/performance-test</a>. De opstelling bestaat uit twee delen.</p>
 <section id="de-testopstelling"><div class="header-wrapper"><h4 id="x6-3-1-de-testopstelling"><bdi class="secno">6.3.1 </bdi>De testopstelling</h4><a class="self-link" href="#de-testopstelling" aria-label="Permalink for Section 6.3.1"></a></div>
 <ul>
 <li><p><strong>Frontend</strong> — een statische HTML-pagina met JavaScript die met een pool van <em>workers</em>
@@ -2310,9 +2308,8 @@ retourneert een klein JSON-antwoord.</p>
 </li>
 </ul>
 <p>De kern van de opzet zit in het adres dat per verzoek wordt opgebouwd:</p>
-<pre><code class="js hljs" aria-busy="false"><span class="hljs-string">`https://<span class="hljs-subst">${i}</span>-<span class="hljs-subst">${<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">999999</span>)}</span>-test.henkerikvanderhoek.nl/performance-test?delay=<span class="hljs-subst">${delay}</span>`</span>
+<pre><code class="js hljs" aria-busy="false"><span class="hljs-string">`https://<span class="hljs-subst">${i}</span>-<span class="hljs-subst">${<span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">999999</span>)}</span>-test.domein.nl/performance-test?delay=<span class="hljs-subst">${delay}</span>`</span>
 </code></pre>
-<p>TODO: Domeinnaam vervangen.</p>
 <p>Elk verzoek gaat naar een <strong>uniek subdomein</strong> en dus naar een <strong>aparte origin</strong>. Daarmee modelleert
 de test getrouw de werkelijkheid van 1.600 onafhankelijke organisaties: voor elke organisatie moet
 de browser een volledig nieuwe verbinding opzetten (DNS-lookup, TCP-handshake, TLS-handshake) en —

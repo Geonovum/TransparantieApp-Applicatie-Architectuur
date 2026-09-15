@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Parallel Requests Test</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    #log { white-space: pre-wrap; max-height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+    #startBtn { padding: 10px 20px; font-size: 16px; margin-top: 10px; }
+    .controls { margin-bottom: 15px; }
+    .controls label { display: block; margin-top: 8px; }
+    .controls input { padding: 5px; width: 120px; }
+  </style>
+</head>
+<body>
+  <h1>Parallel Requests Test</h1>
+
+  <div class="controls">
+    <label>
+      Total Requests:
+      <input id="totalRequests" type="number" value="1600">
+    </label>
+    <label>
+      Batch Size (max parallel):
+      <input id="batchSize" type="number" value="200">
+    </label>
+    <label>
+      Base Delay (ms):
+      <input id="baseDelay" type="number" value="200">
+    </label>
+    <label>
+      Max Jitter (ms):
+      <input id="maxJitter" type="number" value="100">
+    </label>
+  </div>
+
+  <button id="startBtn">Start Test</button>
+  <p id="status"></p>
+  <div id="log"></div>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const statusEl = document.getElementById('status');
+  const logEl = document.getElementById('log');
+
+  const totalRequestsInput = document.getElementById('totalRequests');
+  const batchSizeInput = document.getElementById('batchSize');
+  const baseDelayInput = document.getElementById('baseDelay');
+  const maxJitterInput = document.getElementById('maxJitter');
+
+  startBtn.addEventListener('click', async () => {
+    startBtn.disabled = true;
+    logEl.textContent = '';
+    statusEl.textContent = 'Starting requests...';
+
+    const totalRequests = parseInt(totalRequestsInput.value, 10);
+    const maxParallel = parseInt(batchSizeInput.value, 10);
+    const baseDelay = parseInt(baseDelayInput.value, 10);
+    const maxJitter = parseInt(maxJitterInput.value, 10);
+
+    const urls = Array.from({ length: totalRequests }, (_, i) => {
+      const jitter = Math.floor(Math.random() * maxJitter);
+      const delay = baseDelay + jitter;
+
+      // REPLACE 'domein.nl' WITH YOUR ACTUAL DOMAIN
+      return `https://${i}-${Math.floor(Math.random() * 999999)}-test.domein.nl/performance-test?delay=${delay}`;
+    });
+
+    const startTime = performance.now();
+    let completed = 0;
+    let succeeded = 0;
+    let failed = 0;
+    let nextIndex = 0;
+
+    async function worker() {
+      while (true) {
+        const currentIndex = nextIndex++;
+        if (currentIndex >= urls.length) return;
+
+        const url = urls[currentIndex];
+
+        try {
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: `Request #${currentIndex}` })
+          });
+
+          const json = await res.json();
+          completed++;
+          succeeded++;
+
+          if (completed % 50 === 0) {
+            statusEl.textContent = `Completed ${completed} / ${totalRequests}`;
+          }
+
+          logEl.textContent += `#${currentIndex} ✅ ${url} (subdomain: ${json.subdomain})\n`;
+        } catch (err) {
+          completed++;
+          failed++;
+          logEl.textContent += `#${currentIndex} ❌ ${url} (${err.message})\n`;
+        }
+      }
+    }
+
+    const workers = Array.from({ length: maxParallel }, () => worker());
+
+    await Promise.all(workers);
+
+    const endTime = performance.now();
+    statusEl.textContent = `All ${totalRequests} requests completed in ${(endTime - startTime).toFixed(2)} ms. Succeeded: ${succeeded}, Failed: ${failed}`;
+    startBtn.disabled = false;
+  });
+</script>
+</body>
+</html>

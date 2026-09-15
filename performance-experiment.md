@@ -34,10 +34,7 @@ die last technisch aankan.
 ## Opzet van het experiment
 
 De volledige code van de testopstelling staat in
-[github.com/henkerik/performance-test](https://github.com/henkerik/performance-test). De opstelling
-bestaat uit twee delen.
-
-TODO: Verplaatsen naar Github account Geonovum? 
+[github.com/Geonovum/TransparantieApp-Applicatie-Architectuur/performance-test](https://github.com/Geonovum/TransparantieApp-Applicatie-Architectuur/performance-test). De opstelling bestaat uit twee delen.
 
 ### De testopstelling
 
@@ -52,10 +49,8 @@ TODO: Verplaatsen naar Github account Geonovum?
 De kern van de opzet zit in het adres dat per verzoek wordt opgebouwd:
 
 ```js
-`https://${i}-${Math.floor(Math.random() * 999999)}-test.henkerikvanderhoek.nl/performance-test?delay=${delay}`
+`https://${i}-${Math.floor(Math.random() * 999999)}-test.domein.nl/performance-test?delay=${delay}`
 ```
-
-TODO: Domeinnaam vervangen.
 
 Elk verzoek gaat naar een **uniek subdomein** en dus naar een **aparte origin**. Daarmee modelleert
 de test getrouw de werkelijkheid van 1.600 onafhankelijke organisaties: voor elke organisatie moet
