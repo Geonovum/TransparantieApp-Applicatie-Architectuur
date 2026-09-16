@@ -70,16 +70,6 @@ let respecConfig = {
   authors:
     [
       {
-        name: "Frank Terpstra",
-        company: "Geonovum",
-        companyURL: "https://www.geonovum.nl",
-      },
-	  {
-        name: "Carmen Burghardt",
-        company: "Geonovum",
-        companyURL: "https://www.geonovum.nl",
-      },
-	  {
         name: "Henk Erik van der Hoek",
         company: "Geonovum",
         companyURL: "https://www.geonovum.nl",
