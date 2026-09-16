@@ -13,3 +13,13 @@ Dit document is onderdeel van de rapportage over het project TransparantieApp de
 | Applicatie Architectuur          | https://docs.geostandaarden.nl/ldv/transparantieapp-arch  | https://geonovum.github.io/TransparantieApp-Applicatie-Architectuur/ | https://github.com/Geonovum/TransparantieApp-Applicatie-Architectuur |
 
 ## Leeswijzer
+
+Deze bijlage volgt de weg die het project heeft afgelegd: eerst de architectuurkeuzes voor de eerste werkende versie van de app, vervolgens de bedenkingen die daarbij naar boven kwamen, en ten slotte de voorstellen en metingen die daarop antwoord geven.
+
+- [Applicatie architectuur](#applicatie-architectuur) beschrijft de context en de randvoorwaarden, werkt vier oplossingsrichtingen voor authenticatie en autorisatie uit — server-side aggregatie, JWT met decentrale aggregatie, de VO-Rijk-aanpak en pseudoniemen — en vergelijkt ze op onder meer de vraag of het BSN in de frontend terechtkomt. Het hoofdstuk sluit af met de keuze tussen een web-app en een native app.
+- [Reflectie](#reflectie) beschrijft vier bedenkingen bij gedistribueerde opslag met samenvoeging in de frontend: de verantwoordelijkheid voor verborgen verwerkingen, de toegangscontrole rond `data_subject_id`, de schaalbaarheid bij overheidsbrede uitrol, en de omgang met niet-digitale inzage.
+- [Voorstel 1: Trace index](#voorstel-1-trace-index) adresseert de eerste drie bedenkingen met een index die uitsluitend bijhoudt welke trace-ID's bij welke betrokkene en welk logboek horen — dus zonder loggegevens, en met pseudonimisering in plaats van het BSN.
+- [Voorstel 2: Federated Aggregator](#voorstel-2-federated-aggregator) beschrijft een variant op server-side aggregatie waarbij de aggregatiecomponent niet centraal staat, maar bij alle deelnemende organisaties draait.
+- [Performance-experiment](#performance-experiment-schaalbaarheid-van-de-vo-rijk-aanpak) toetst met metingen op vier combinaties van browser en apparaat of de VO-Rijk-aanpak opschaalt naar overheidsbrede aantallen logboeken, en verklaart de uitkomst vanuit de verbindingslimieten van de browser.
+
+Wie alleen in de uitkomsten geïnteresseerd is, kan zich beperken tot de vergelijking en de conclusies in het hoofdstuk Applicatie architectuur, en tot de conclusie van het performance-experiment.
